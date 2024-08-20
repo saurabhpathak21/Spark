@@ -1,9 +1,9 @@
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part
 
-project_id = "et-proposition-sapient-186848"
+project_id = "gcp project id"
 location = "europe-west2"
-bucket_prefix = "gs://demobucket878/"
+bucket_prefix = "enter your bucket  uri/"
 
 
 vertexai.init(project=project_id, location=location)

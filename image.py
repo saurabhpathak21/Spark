@@ -5,10 +5,8 @@ project_id = "gcp project id"
 location = "europe-west2"
 bucket_prefix = "enter your bucket  uri/"
 
-
 vertexai.init(project=project_id, location=location)
 model = GenerativeModel("gemini-1.5-flash-001")
-
 
 def process_uploaded_images(image_names, prompt_text_template):
     image_uris = [bucket_prefix + name for name in image_names]
@@ -38,13 +36,15 @@ image_names = simulate_image_uploads()
 prompt_text_template_general = "Explain these {image_count} general architecture designs individually in response?"
 
 # comparison prompt template
-prompt_text_template_compare = "Compare these {image_count} architecture designs for performance, network connectivity, security, and scalability. Assess all in detail and suggest which one is better and why?"
+prompt_text_template_compare = "Compare these {image_count} architecture designs for performance, data (compute,latency,performance), network, security, and scalability. Assess all in detail and choose which one is better and why?"
 
 #set context
 prompt_text_template_context = '''Evaulate these {image_count} architecture on three basic creteria
-1. The traffic should be encrypted at rest and in transit
-2. The traffic can be contorlled using the network
-3. No unauthorised access
+1. The traffic should be encrypted at rest and in transit.
+2. Data integrity is consistent.
+3. Architecture can scale and perform as the data volume, velocity, and variety grow.
+4. Architecture complies with the relevant regulations, policies, and standards for data governance and security.
+5. Data is stored and accessed only from approved services such as of Big query and Google Cloud Storage.
 '''
 prompt_text_template = prompt_text_template_general + prompt_text_template_compare + prompt_text_template_context
                                     

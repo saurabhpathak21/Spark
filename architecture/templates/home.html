@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Think Box</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .subheader {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-top: -10px;
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .btn-big {
+            font-size: 1.5rem;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-draw {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-analyze {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .btn-big:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">Architecture Think Box</header>
+
+    <p class="subheader">Explore, Design, and Innovate Your Architectural Ideas</p>
+
+    <div class="button-container">
+        <!-- Draw Your Design Button -->
+        <button class="btn btn-big btn-draw" id="btn-draw">
+            <img src="../static/edit_15557712.gif" alt="Draw Icon" class="btn-icon">
+            DrawYourDesign
+        </button>
+        <!-- Analyze Design Button -->
+        <button class="btn btn-big btn-analyze" id="btn-analyze">
+            <img src="../static/investigation_17556352.gif"alt="Analyze Icon" class="btn-icon">
+            AnalyzeDesign
+        </button>
+    </div>
+
+    <!-- Bootstrap and JavaScript dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add event listeners to buttons for navigation or functionality
+        document.getElementById('btn-draw').addEventListener('click', function () {
+            // Logic for DrawYourDesign button click
+            window.location.href = 'http://localhost:3000/draw'; 
+        });
+
+        document.getElementById('btn-analyze').addEventListener('click', function () {
+            // Logic for AnalyzeDesign button click
+            window.location.href = 'http://localhost:3000/analyze'; 
+        });
+    </script>
+</body>
+
+</html>

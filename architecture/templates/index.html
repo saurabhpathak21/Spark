@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Think Box - Sign Up & Upload</title>
+    <!-- Include Bootstrap, FontAwesome, and AOS for UI improvements and animations -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+    <!-- JavaScript -->
+    <script src="../static/js/script.js" defer></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="../static/js/script.js" defer></script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="text-center mb-4">
+            <h3 class="mb-0">Architecture Think Box</h3>
+        </header>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+
+                <!-- Nav Pills for Tab Navigation -->
+                <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="sign-up-tab" data-bs-toggle="pill" data-bs-target="#sign-up" type="button" role="tab">Sign Up</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="sign-in-tab" data-bs-toggle="pill" data-bs-target="#sign-in" type="button" role="tab">Sign In</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="upload-tab" data-bs-toggle="pill" data-bs-target="#upload" type="button" role="tab" disabled>Upload</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button id="sparkspace-tab" class="nav-link" data-bs-toggle="pill" data-bs-target="#SparkSpace" type="button" role="tab" disabled>SparkSpace</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="home" type="button" role="tab">Home</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <span id="username-display" class="nav-link username"></span>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button id="logoutBtn" class="btn btn-danger" style="display: none;">Logout</button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content for Forms and Features -->
+                <div class="tab-content">
+                    <!-- Sign Up Form -->
+                    <div class="tab-pane fade show active" id="sign-up" role="tabpanel">
+                        <form id="signUpForm" class="row g-3" data-aos="fade-up">
+                            <div class="col-md-12">
+                                <label for="fullName" class="form-label">
+                                    <i class="fas fa-user icon"></i> Full Name <span>*</span>
+                                </label>
+                                <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope icon"></i> Email <span>*</span>
+                                </label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" autocomplete="email" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock icon"></i> Password <span>*</span>
+                                </label>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                <small class="form-text text-muted">Password must be at least 8 characters long and contain a number and a capital letter.</small>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                            </div>
+                            <div class="col-md-12 text-center mt-3">
+                                <p>Already have an account? <a href="#" id="go-to-signin" data-bs-toggle="pill" data-bs-target="#sign-in">Sign In</a></p>
+                            </div>
+                            <div class="col-md-12">
+                                <div id="signUpStatus" class="text-center"></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sign In Form -->
+                    <div class="tab-pane fade" id="sign-in" role="tabpanel">
+                        <form id="signInForm" class="row g-3" data-aos="fade-up">
+                            <div class="col-md-12">
+                                <label for="signInEmail" class="form-label">
+                                    <i class="fas fa-envelope icon"></i> Email <span>*</span>
+                                </label>
+                                <input type="email" id="signInEmail" name="signInEmail" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="signInPassword" class="form-label">
+                                    <i class="fas fa-lock icon"></i> Password <span>*</span>
+                                </label>
+                                <input type="password" id="signInPassword" name="signInPassword" class="form-control" placeholder="Enter your password" required>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                            </div>
+                            <div class="col-md-12 text-center mt-3">
+                                <p>Don't have an account? <a href="#" id="go-to-signup" data-bs-toggle="pill" data-bs-target="#sign-up">Sign Up</a></p>
+                            </div>
+                            <div class="col-md-12">
+                                <div id="signInStatus" class="text-center"></div>
+                            </div>
+                        </form>
+                    </div>
+
+     <!-- Upload Form -->
+     <div class="tab-pane fade" id="upload" role="tabpanel">
+        <form id="uploadForm" class="row g-4" enctype="multipart/form-data" data-aos="fade-up">
+            <div class="col-md-6">
+                <label for="userName" class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text" id="userName" name="userName" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="col-md-6">
+                <label for="department" class="form-label">Department <span class="text-danger">*</span></label>
+                <select id="department" name="department" class="form-select" required>
+                    <option value="" selected disabled>Department</option>
+                    <option value="department1">IT</option>
+                    <option value="department2">Security</option>
+                    <option value="department3">Finance</option>
+                    <option value="department4">Marketing</option>
+                    <option value="department5">Operations</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="scope" class="form-label">Scope <span class="text-danger">*</span></label>
+                <select id="scope" name="scope" class="form-select" required>
+                    <option value="" selected disabled>Scope</option>
+                    <option value="scope1">Cloud Platform</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="journey" class="form-label">Journey <span class="text-danger">*</span></label>
+                <select id="journey" name="journey" class="form-select" required>
+                    <option value="" selected disabled>Select a journey</option>
+                    <option value="journey1">Google Cloud Platform</option>
+                    <option value="journey2">Microsoft Azure</option>
+                    <option value="journey3">Amazon Web Services</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="file1" class="form-label">File(s) <span class="text-danger">*</span></label>
+                <input type="file" id="file1" name="file1[]" class="form-control" accept="image/*" multiple required>
+            </div>
+            <div class="col-md-6">
+                <label for="file2" class="form-label">Additional File(s)</label>
+                <input type="file" id="file2" name="file2[]" class="form-control" accept="image/*" multiple>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary w-100">Upload</button>
+            </div>
+            <div id="statusMessage" class="col-md-12"></div>
+            <div id="uploading-spinner" class="text-center" style="display: none;">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p>Uploading...</p>
+            </div>
+        </form>
+    </div>        
+    <div id="loadingIndicator" style="display:none;">Loading...</div>
+
+                    <!-- Feature Sections -->
+                    <div id="SparkSpace" class="tab-pane fade" role="tabpanel">
+                        <div class="feature-section text-center feature-sections" data-aos="fade-up">
+                            <div class="feature-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>Explain the Architecture</h4>
+                            <p>Provide detailed explanations of the architectural design...</p>
+                            <button class="btn btn-primary" data-function="explainArchitecture">Explain Architecture</button>
+                        </div>
+    
+                        <div class="feature-section text-center feature-sections" data-aos="fade-up">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Analyze the Architecture</h4>
+                            <p>Analyze the strengths, weaknesses, and performance of the architecture...</p>
+                            <button class="btn btn-primary" data-function="compareArchitecture">Compare Architecture</button>
+                        </div>
+    
+                        <div class="feature-section text-center feature-sections" data-aos="fade-up">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>Suggest Improvements</h4>
+                            <p>Offer suggestions for improving the architecture based on the analysis...</p>
+                            <button class="btn btn-primary" data-function="suggestImprovements">Suggest Improvements</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Dynamic Responses -->
+    <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="responseModalLabel">Generated Response</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="responseContent">
+                    <!-- Dynamic response content will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS, AOS, and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.getElementById('home').addEventListener('click', function () {
+            window.location.href = 'http://localhost:3000'; 
+        });
+
+    </script>
+</body>
+</html>
